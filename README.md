@@ -1,5 +1,7 @@
-# ECE1724F-Project
-
+# ECE1724F-Project-Project-Proposal
+# Simple Game Engine
+Bart Cui - 1011827908
+Oliver Chen - 1003045518
 ## Motivation
 
 Our motivation for picking this project comes from both personal interest and curiosity about how modern game engines are built. We heard that more gaming companies are starting to adapt existing large-scale game engines such as Unity and Unreal. These engines are powerful, but also very complex with hidden tools and APIs. Building even a small engine of our own gives us the chance to gain a deeper understanding of how engines operate and how these core components such as scene management, ECS design, and real-time rendering cooperate with each other.
