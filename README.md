@@ -21,8 +21,7 @@ Our goal is to design a small 2D game engine in Rust, built on top of Bevy, purp
 ## Key Features
 
 ### Deterministic Turn Scheduler
-Implements a fixed pipeline (Input → Intent → Resolve → Commit) with explicit system ordering, a single-threaded commit step, and seeded RNG.  
-Deliverables: replay files (inputs + seed) and golden tests that reproduce identical end states.
+The engine will implement a fixed pipeline (Input → Intent → Resolve → Commit) with explicit system ordering, a single-threaded commit step, and seeded RNG. Deliverables: replay files (inputs + seed) and golden tests that reproduce identical end states.
 
 ### Grid-Native Abstractions
 Defines a GridCoord type and provides grid↔world mapping (tile size/origin), occupancy and layers (terrain/unit/item), blocking and collision flags, neighbour iterators (4- or 8-connected), and region queries (flood-fill).
@@ -31,14 +30,14 @@ Defines a GridCoord type and provides grid↔world mapping (tile size/origin), o
 Supports level formats such as JSON, TOML, or simple ASCII layouts.  Validates bounds, layers, and blocking flags, and builds grid + occupancy indices on load.
 
 ### ECS for Game Objects
-Implements minimal, composable components such as Position(GridCoord), Player, Blocking, Goal, Trap, and AI.  
-Example: a wall = Position + Blocking; an exit = Position + Goal; a ghost = Position + Actor + AI + Blocking. Systems follow the turn pipeline and only mutate state during the commit phase.
+Every game object will be broken down into small components such as Position(GridCoord), Player, Blocking, Goal, Trap, and AI.  
+For example: a wall = Position + Blocking; an exit = Position + Goal; a ghost = Position + Actor + AI + Blocking. Systems follow the turn pipeline and only mutate state during the commit phase.
 
 ### Scene Management
-Organizes the game into scenes such as Loading, Main Menu, Game, and Game Over. Each scene has its own setup and cleanup, ensuring smooth transitions and predictable behaviour.
+The engine organizes the game into scenes such as Loading, Main Menu, Game, and Game Over. Each scene has its own setup and cleanup, ensuring smooth transitions and predictable behaviour.
 
 ### Movement Rules
-Controls how characters move on the grid. Movement will be turn-based, where the player acts and then enemies respond, but the rules will remain customizable. Examples include explicit tie-breaks when multiple actors target the same cell, or configurable win/lose triggers.
+The game runs in turns and controls how characters move on the grid. Movement will be turn-based, where the player acts and then enemies respond, but the rules will remain customizable. Examples include explicit tie-breaks when multiple actors target the same cell, or configurable win/lose triggers.
 
 ### Pathfinding Algorithm
 Uses A* as the default shortest-path solver. A* provides optimal routes like Dijkstra’s algorithm while exploring fewer nodes when guided by a heuristic. Passability and step costs are defined through a pluggable policy (a Rust trait), so different movers (player, ghost), door/key mechanics, or terrain costs can be swapped without altering the solver. The default heuristic is Manhattan distance (|dx| + |dy|), which is admissible and consistent on a 4-connected grid — fast to compute and ideal for deterministic turn logic.
