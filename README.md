@@ -38,7 +38,7 @@ The engine organizes the game into scenes such as Main Menu, Game In, and Game O
 
 ### Pathfinding Algorithm
 Uses A* as the default shortest-path solver. A* provides optimal routes like Dijkstra’s algorithm while exploring fewer nodes when guided by a heuristic. Passability and step costs are defined through a pluggable policy (a Rust trait), so different movers (player, ghost), door/key mechanics, or terrain costs can be swapped without altering the solver. The default heuristic is Manhattan distance (|dx| + |dy|), which is admissible and consistent on a 4-connected grid — fast to compute and ideal for deterministic turn logic.
-![Class diagram](./classes.jpg)
+![Class diagram](./classes.JPG)
 ## Tentative Plan
 
 We aim to finish the project within the timeframe of five weeks and have enough time to polish and work on the report and demo in late November. First, we both need to get familiar with Bevy and game engine design concepts, focusing on ECS, plugins, states, assets, 2D rendering aspects. After the ramp-up, Oliver will focus on the core engine loop and the turn scheduler. Each turn will be structured as a fixed pipeline (Input → AI Plan→ Resolve → Commit → Cleanup). Oliver will also implement collision/win/lose rules, tie-breakers with RNG and replay for debugging, and a basic pathfinding algorithm (A*) that allows enemies to plan shortest routes around obstacles that use the injected passability and Manhattan heuristic. 
@@ -47,6 +47,7 @@ This includes implementing the conditions for collisions and win/lose states, su
 Bart will focus on the data and presentation layer that connects the logic to what players actually see on screen. The main game objects will be designed using small and reusable components such as Position, Actor, Blocking, Goal, Trap and Door. Bart will also build grid utilities that map between grid coordinates and on-screen positions to track which cells are occupied, and help with queries such as finding neighbours or reachable areas. A simple level loader will be implemented that reads levels from text or JSON files and verifies that each level is valid. Input mapping will also be handled here, turning key presses defined in a config file into movement commands. Finally, the basic 2D rendering will be set up so that the grid, characters, and a small status display, such as a turn counter, restart button, and seed number, are visible. For scene management, the engine will use states for the Main Menu, the In Game session, and simpler overlays for temporary screens such as Pause and Game Over. When the player returns to the main menu or restarts a level, the previous game entities will be cleared and the state resets. 
 
 After integrating our components, we will ship a small, polished chasing demo that proves the engine works end-to-end. Multiple rounds of testing are necessary to ensure the movement rules function smoothly within the grid and rendering system. By week 5, we will work on the simple game demo, showcase the engine’s features and the final proof that the framework works as intended. 
+
 
 
 
