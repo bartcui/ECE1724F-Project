@@ -46,7 +46,9 @@ This includes implementing the conditions for collisions and win/lose states, su
 
 Bart will focus on the data and presentation layer that connects the logic to what players actually see on screen. The main game objects will be designed using small and reusable components such as Position, Actor, Blocking, Goal, Trap and Door. Bart will also build grid utilities that map between grid coordinates and on-screen positions to track which cells are occupied, and help with queries such as finding neighbours or reachable areas. A simple level loader will be implemented that reads levels from text or JSON files and verifies that each level is valid. Input mapping will also be handled here, turning key presses defined in a config file into movement commands. Finally, the basic 2D rendering will be set up so that the grid, characters, and a small status display, such as a turn counter, restart button, and seed number, are visible. For scene management, the engine will use states for the Main Menu, the In Game session, and simpler overlays for temporary screens such as Pause and Game Over. When the player returns to the main menu or restarts a level, the previous game entities will be cleared and the state resets. 
 
-After integrating our components, we will work together to build a minimal viable chasing game using the engine. Multiple rounds of testing are necessary to ensure the movement rules function smoothly within the grid and rendering system. By week 5, we will work on the simple game demo, showcase the engine’s features and the final proof that the framework works as intended. 
+After integrating our components, we will ship a small, polished chasing demo that proves the engine works end-to-end. Multiple rounds of testing are necessary to ensure the movement rules function smoothly within the grid and rendering system. By week 5, we will work on the simple game demo, showcase the engine’s features and the final proof that the framework works as intended. 
+
+
 
 
 
